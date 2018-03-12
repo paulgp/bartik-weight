@@ -12,24 +12,45 @@ local y d_sh_empl_mfg
 local x d_tradeusch_pw
 local z z2
 
-local ind_stub sh_ind_*
-local growth_stub trade_*
+local ind_stub sh_ind_
+local growth_stub trade_
 
 local time_var year
 local cluster_var czone
 
 levelsof `time_var', local(years)
 foreach year in `years' {
-	foreach ind_var of varlist `ind_stub' {
+	foreach ind_var of varlist `ind_stub'* {
 		gen t`year'_`ind_var' = `ind_var' * (year == `year')
 		}
 	}
 
-bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub') x(`x') iv(`z') y(`y')  controls(`controls') weight_var(`weight')
+bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') iv(`z') y(`y')  controls(`controls') weight_var(`weight')
+mat beta = r(beta)
+mat alpha = r(alpha)
+mat G = r(G)
+qui desc t*_`ind_stub'*, varlist
+local varlist = r(varlist)
+
+clear
+svmat beta
+svmat alpha
+svmat G
+
+gen ind = ""
+gen year = ""
+local t = 1
+foreach var in `varlist' {
+	disp "`var'"
+	if regexm("`var'", "t(.*)_`ind_stub'(.*)") {
+		replace year = regexs(1) if _n == `t'
+		replace ind = regexs(2) if _n == `t'
+		}
+	local t = `t' + 1
+	}
 
 /* TODO:
 * make weight optional
-* confirm that order of z doesn't matter
 */
 
 
