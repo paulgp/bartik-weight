@@ -1,5 +1,6 @@
 
 
+discard
 global data_path "../data/"
 adopath+"../code"
 use $data_path/input_ADH, clear
@@ -25,13 +26,13 @@ foreach year in `years' {
 		}
 	}
 
-bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') iv(`z') y(`y')  controls(`controls') weight_var(`weight')
+bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') y(`y')  controls(`controls') weight_var(`weight')
 mat beta = r(beta)
 mat alpha = r(alpha)
 mat G = r(G)
 qui desc t*_`ind_stub'*, varlist
 local varlist = r(varlist)
-
+/*
 clear
 svmat beta
 svmat alpha

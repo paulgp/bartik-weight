@@ -1,12 +1,11 @@
 
 program define bartik_weight, rclass
-	syntax [if] [in], z(varlist) weightstub(varlist) iv(name) y(name) x(name) [by(varname)] [absorb(varname)] [filename(string)] [controls(string)] [weight_var(string)]
+	syntax [if] [in], z(varlist) weightstub(varlist)  y(varname) x(varname) [absorb(varname)] [controls(varlist)] [weight_var(varname)]
     if "`weight_var'" != "" {
         local weight_command "[aweight=`weight_var']"
     }
     local share_stub `sharestub'
 	local weight_stub `weightstub'
-	local bartik_iv `iv'
 	local x `x'
 	local y `y'
 	disp "Controls: `controls'"
