@@ -32,7 +32,7 @@ mat alpha = r(alpha)
 mat G = r(G)
 qui desc t*_`ind_stub'*, varlist
 local varlist = r(varlist)
-/*
+
 clear
 svmat beta
 svmat alpha
@@ -42,16 +42,12 @@ gen ind = ""
 gen year = ""
 local t = 1
 foreach var in `varlist' {
-	disp "`var'"
 	if regexm("`var'", "t(.*)_`ind_stub'(.*)") {
-		replace year = regexs(1) if _n == `t'
-		replace ind = regexs(2) if _n == `t'
+		qui replace year = regexs(1) if _n == `t'
+		qui replace ind = regexs(2) if _n == `t'
 		}
 	local t = `t' + 1
 	}
 
-/* TODO:
-* make weight optional
-*/
 
 
