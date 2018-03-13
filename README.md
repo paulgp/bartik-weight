@@ -56,7 +56,8 @@ readable and labelled data in both examples above, and repeat the code
 here:
 
 ```
-bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') y(`y')  controls(`controls') weight_var(`weight')
+bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') \\\
+	y(`y')  controls(`controls') weight_var(`weight')
 mat beta = r(beta)
 mat alpha = r(alpha)
 mat G = r(G)
