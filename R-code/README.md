@@ -1,6 +1,4 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # About `bartik.weight`
 
 The package `bartik.weight` is an implementation in R for estimating
