@@ -1,0 +1,17 @@
+Package: bartik.weight
+Type: Package
+Title: Estimating Rotemberg Weights for a Bartik "Instrument"
+Version: 0.1.0
+Authors@R: person("JJ", "Chen", email = "jiajia.chern@gmail.com", role = c("aut", "cre"))
+Description: Contains example datasets and a function for estimating Rotemberg
+    weights outlined in Goldsmith-Pinkham, Sorkin and Swift (2018).
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 2.10)
+Imports: Rcpp (>= 0.12.16),
+    tibble
+LinkingTo: Rcpp, RcppArmadillo
+URL: https://github.com/jjchern/bartik.weight
+BugReports: https://github.com/jjchern/bartik.weight/issues
+RoxygenNote: 6.0.1
