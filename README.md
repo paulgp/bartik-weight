@@ -4,9 +4,7 @@ This program estimates the Rotemberg weights outlined in
 [Goldsmith-Pinkham, Sorkin and Swift (2018)](http://paulgp.github.io/papers/bartik_gpss.pdf). Each weight returned
 corresponds to the misspecification elasticity for each individual
 instrument when using the Bartik instrument defined by the
-weights. Currently, this package is only available for Stata, but if
-you are interested in implementing it for R, please do and let me
-merge it into this repo!
+weights. The discussion below pertains to the Stata implementation -- see the R-code subdirectory for an R implementation. 
 
 ## Installation
 
