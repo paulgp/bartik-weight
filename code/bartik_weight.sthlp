@@ -69,10 +69,6 @@ weights will be collapsed to constract a single matrix. See
 Goldsmith-Pinkham, Sorkin and Swift (2018) for a full
 description. {opt weightstub()} is required.
 
-{phang}
-{opt generate(newvar)} creates {it:newvar} containing the whatever
-values.
-
 
 {dlgtab:Options}
 
