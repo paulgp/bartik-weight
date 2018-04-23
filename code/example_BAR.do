@@ -63,7 +63,7 @@ foreach year in `years' {
 
 local controls t*_init_male t*_init_race_white t*_init_native_born t*_init_educ_hs t*_init_educ_coll t*_init_veteran t*_init_nchild year_*
 
-bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') y(`y')  controls(`controls') weight_var(`weight')  absorb(czone)
+bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') y(`y')  controls(`controls') weight_var(`weight')  absorb(czone) by(year)
 
 mat beta = r(beta)
 mat alpha = r(alpha)

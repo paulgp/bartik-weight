@@ -26,7 +26,7 @@ foreach year in `years' {
 		}
 	}
 
-bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') y(`y')  controls(`controls') weight_var(`weight')
+bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') y(`y')  controls(`controls') weight_var(`weight') by(year)
 mat beta = r(beta)
 mat alpha = r(alpha)
 mat G = r(G)

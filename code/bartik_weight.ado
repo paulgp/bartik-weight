@@ -1,6 +1,6 @@
 
 program define bartik_weight, rclass
-	syntax [if] [in], z(varlist) weightstub(varlist)  y(varname) x(varname) [absorb(varname)] [controls(varlist)] [weight_var(varname)]
+	syntax [if] [in], z(varlist) weightstub(varlist)  y(varname) x(varname) [absorb(varname)] [controls(varlist)] [weight_var(varname)] [by(varname)]
 	local share_stub `sharestub'
 	local weight_stub `weightstub'
 	local x `x'
@@ -20,8 +20,15 @@ program define bartik_weight, rclass
 		local absorb_var `abs'_*
 		local controls "`controls' `absorb_var'"
 		}
+	if "`by'" != "" {
+		disp "BY variable: `by'"
+		local by by(`by')
+		}
+	else {
+		disp "No BY variable "
+		}
 	preserve
-	collapse (first) `weight_stub', by(year)
+	collapse (first) `weight_stub', `by'
 	foreach var of varlist `weight_stub' {
 		qui replace `var' = 0 if `var' == .
 		}
