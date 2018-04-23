@@ -1,7 +1,7 @@
 
 
 {smcl}
-{* *! version 1.0.0  March 13, 2018 @ 15:42:12}{...}
+{* *! version 1.0.0  April 23, 2018 @ 09:14:12}{...}
 {viewerjumpto "Syntax" "bartk_weight##syntax"}{...}
 {viewerjumpto "Description" "bartik_weight##description"}{...}
 {viewerjumpto "Details" "bartik_weight##details"}{...}
@@ -32,6 +32,7 @@
 {synopt:{opt controls(varlist)}}list of control variables{p_end}
 {synopt:{opt absorb(varname)}}fixed effect to absorb{p_end}
 {synopt:{opt weight_var(varname)}}name of analytic weight variable for regression{p_end}
+{synopt:{opt by(varname)}}name of the time variable that is interacted with the shares{p_end}
 {synoptline}
 {p2colreset}{...}
 
@@ -69,7 +70,6 @@ weights will be collapsed to constract a single matrix. See
 Goldsmith-Pinkham, Sorkin and Swift (2018) for a full
 description. {opt weightstub()} is required.
 
-
 {dlgtab:Options}
 
 {phang} {opt controls(varlist)} is the list of variables used as
@@ -85,6 +85,11 @@ dummy variables.
 {phang}{opt weight_var(varname)} specifies the weight variable used to
 weight the regression. In a standard regression, the {it:varname}
 would be the variable used in {cmd:[aweight=varname]}.
+
+{phang}{opt by(varname)} specifies name of the time variable that is
+interacted with the shares. The variable is omitted when the
+regression is a cross-section, while in a panel setting, this would be
+each time period that the national growth rates are defined in. 
 
 
 {marker remarks}{...}
