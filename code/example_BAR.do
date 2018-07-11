@@ -3,7 +3,7 @@
 discard
 global data_path "../data/"
 adopath+"../code"
-use $data_path/input_BAR, clear
+use $data_path/input_forweights_BAR, clear
 
 local controls male race_white native_born educ_hs educ_coll veteran nchild
 local weight pop1980
@@ -58,12 +58,35 @@ foreach year in `years' {
 			gen t`year'_`ind_var' = `ind_var' * (year == `year')
 			}
 		}
+
 	}
+
+/* Demeaning Growth Rates */
+
+foreach growth of varlist `growth_stub'* {
+	egen _`x' = mean(`x'), by(year)
+	replace `x' = _`x' if `x' == .
+	drop _`x'
+	}
+
+foreach var of varlist yr1980_sh_ind_* {
+	if regexm("`var'", "yr1980_sh_ind_(.*)") {
+		local ind = regexs(1) 
+		gen nat1980_empl_ind_`ind' = nat_empl_ind_`ind'
+		}
+	}
+
+egen mean_growth = rowmean(nat_empl_ind_*)
+foreach growth of varlist nat_empl_ind_* {
+	replace `growth' = `growth' - mean_growth
+	}
+drop mean_growth
 
 
 local controls t*_init_male t*_init_race_white t*_init_native_born t*_init_educ_hs t*_init_educ_coll t*_init_veteran t*_init_nchild year_*
 
-bartik_weight, z(t*_`ind_stub'*)    weightstub(`growth_stub'*) x(`x') y(`y')  controls(`controls') weight_var(`weight')  absorb(czone) by(year)
+bartik_weight, z(t*_`ind_stub'*)    weightstub(nat1980_empl_ind_*) x(`x') y(`y')  controls(`controls') weight_var(`weight')  absorb(czone) by(year)
+
 
 mat beta = r(beta)
 mat alpha = r(alpha)

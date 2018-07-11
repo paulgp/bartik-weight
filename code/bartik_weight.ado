@@ -44,6 +44,9 @@ program define bartik_weight, rclass
 	mat alpha = r(alpha)
 	mat beta = r(beta)
 	mat G = r(G)
+	if "`absorb'" != "" {
+		drop `abs'_*
+		}
 	return matrix alpha = alpha
 	return matrix beta = beta
 	return matrix G = G
