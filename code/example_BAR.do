@@ -3,7 +3,7 @@
 discard
 global data_path "../data/"
 adopath+"../code"
-use $data_path/input_forweights_BAR, clear
+use $data_path/input_BAR.dta, clear
 
 local controls male race_white native_born educ_hs educ_coll veteran nchild
 local weight pop1980
