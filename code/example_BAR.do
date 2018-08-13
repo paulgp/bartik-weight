@@ -63,11 +63,9 @@ foreach year in `years' {
 
 /* Demeaning Growth Rates */
 
-foreach growth of varlist `growth_stub'* {
-	egen _`x' = mean(`x'), by(year)
-	replace `x' = _`x' if `x' == .
-	drop _`x'
-	}
+egen _`x' = mean(`x'), by(year)
+replace `x' = _`x' if `x' == .
+drop _`x'
 
 foreach var of varlist yr1980_sh_ind_* {
 	if regexm("`var'", "yr1980_sh_ind_(.*)") {
