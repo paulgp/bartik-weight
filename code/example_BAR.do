@@ -62,7 +62,6 @@ foreach year in `years' {
 	}
 
 /* Demeaning Growth Rates */
-
 egen _`x' = mean(`x'), by(year)
 replace `x' = _`x' if `x' == .
 drop _`x'
