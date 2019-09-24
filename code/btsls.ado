@@ -5,7 +5,7 @@ program define btsls, rclass
 	local x `x'
 	local y `y'
 	marksample touse
-	disp "Controls: `controls'"
+*	disp "Controls: `controls'"
 	disp "X variable is `x'"
 	disp "Y variable is `y'"
 	if "`weight_var'" == "" {
@@ -27,6 +27,7 @@ program define btsls, rclass
 		local absorb_var `abs'_*
 		local controls "`controls' `absorb_var'"
 		}
+	/*
 	_rmdcoll `y' `z' `controls' 
 	local z_list = r(varlist)
 	local wordcount = wordcount("`z_list'")
@@ -45,7 +46,10 @@ program define btsls, rclass
 				local new_controls "`new_controls' `test_var'"
 				}
 			}
-		}
+	}
+	*/
+	local new_z "`z'"
+	local new_controls "`controls'"	
 	local K = wordcount("`new_z'")
 	local L = wordcount("`new_controls'")
 	qui count

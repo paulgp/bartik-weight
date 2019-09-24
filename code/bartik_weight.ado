@@ -43,12 +43,16 @@ program define bartik_weight, rclass
 		}
 	mat alpha = r(alpha)
 	mat beta = r(beta)
+	mat gam = r(gam)
+	mat pi = r(pi)
 	mat G = r(G)
 	if "`absorb'" != "" {
 		drop `abs'_*
 		}
 	return matrix alpha = alpha
 	return matrix beta = beta
+	return matrix gam = gam
+	return matrix pi = pi
 	return matrix G = G
 end
 
@@ -63,8 +67,11 @@ mata:
 		xbar = st_data(., (yname,xname) )
 		W = st_data(., tokens(Wname))
 		weight = diag(st_data(., weightname))
+		weight2 = st_data(., weightname)
 		n = rows(x)
 		K = cols(Z)
+		K
+		rows(G)
 		/** Adding ones **/
 		WW = W, J(n,1,1)
 		M_W = I(n) - WW*cholinv(WW'*weight*WW)*WW'*weight
@@ -73,8 +80,13 @@ mata:
 		yy = M_W*y
 		alpha = (diag(G) * Z' * weight* xx) / (G' * Z' * weight* xx)
 		beta = (Z' * weight* yy) :/ (Z' * weight* xx)
+		gam = (Z' * weight* yy) :/ ((ZZ' :* ZZ') * weight2)
+		pi = (ZZ' * weight* xx) :/ ((ZZ' :* ZZ') * weight2)
+		alpha' * beta
 		st_matrix("r(alpha)", alpha)
 		st_matrix("r(beta)", beta)
+		st_matrix("r(gam)", gam)
+		st_matrix("r(pi)", pi)
 		st_matrix("r(G)", G)
 		}
 
@@ -99,8 +111,13 @@ mata:
 
 		alpha = (diag(G) * Z' * weight* xx) / (G' * Z' * weight* xx)
 		beta = (Z' * weight* yy) :/ (Z' * weight* xx)
+		gam = (Z' * weight* yy) :/ (((Z' * weight) :* Z') * J(n,1,1))
+		pi = (Z' * weight* xx) :/ (((Z' * weight) :* Z') * J(n,1,1))
+
 		st_matrix("r(alpha)", alpha)
 		st_matrix("r(beta)", beta)
+		st_matrix("r(gam)", gam)
+		st_matrix("r(pi)", pi)
 		st_matrix("r(G)", G)
 		}
 	
