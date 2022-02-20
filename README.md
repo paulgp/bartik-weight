@@ -10,11 +10,17 @@ _Warning:_ The R implementation is currently slightly out of date.
 
 ## Installation
 
-To install the Stata package, clone or download this repo, and then
-copy `bartik_weight.ado` and `bartik_weight.sthlp` to your personal
+Running
+
+```{stata}
+net install bartik_weight, from(https://raw.githubusercontent.com/paulgp/bartik-weight/master/code/)
+```
+
+will add the package  to your personal
 ado folder. You can find this folder using the `sysdir` command.
 
 ## Example
+
 In the code folder, we provide four example do-files that use the
 `bartik_weight` function: `make_rotemberg_summary_ADH.do`,
 `make_rotemberg_summary_BAR.do`,
