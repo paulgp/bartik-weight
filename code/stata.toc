@@ -1,0 +1,4 @@
+v 1
+
+d Paul Goldsmith-Pinkham, Isaac Sorkin, and Henry Swift
+p bartik_weight estimates the Rotemberg weights outlined in Goldsmith-Pinkham, Sorkin and Swift (2019). Each weight returned corresponds to the misspecification elasticity for each individual instrument when using the Bartik instrument defined by the weights. 
