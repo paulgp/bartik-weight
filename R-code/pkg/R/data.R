@@ -23,10 +23,10 @@
 #' @source [https://github.com/paulgp/bartik-weight]()
 "ADH_local_wide"
 
-#' @title ADH China Shock: "Global" Industry Growths
+#' @title ADH China Shock: "Global" Industry-Level Import Growths
 #'
 #' @md
-#' @description Contains industry growth at the year-industry level.
+#' @description Contains growth of imports at the year-industry level.
 #'
 #' @source [https://github.com/paulgp/bartik-weight]()
 "ADH_global"
